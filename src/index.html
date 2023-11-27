@@ -13,23 +13,25 @@
 <body>
 
     <div class="search__wrapper">
-        <div class="countryName__search">
+        <div class="countryName__search searcbox">
             <label for="countryName">Search Country</label>
             <input id="countryName" type="text" class="js-countrySearch">
         </div>
-        <div class="countryCapital__search">
+        <div class="countryCapital__search searcbox">
             <label for="countryCapital">Search Capital</label>
             <input id="countryCapital" type="text" class="js-capitalSearch">
         </div>
-        <div class="countryCurrency__search">
+        <div class="countryCurrency__search searcbox">
             <label for="countryCurrency">Search Currency</label>
             <input id="countryCurrency" type="text" class="js-currencySearch">
         </div>
-        <div class="countryLanguage__search">
+        <div class="countryLanguage__search searcbox">
             <label for="countryLanguage">Search Language</label>
             <input id="countryLanguage" type="text" class="js-languageSearch">
         </div>
     </div>
+
+    <button class="js-search__Button">Search Button</button>
 
     <div class="container js-table__container">
 
@@ -38,10 +40,10 @@
             <thead class="thead-dark">
                 <tr class="table-primary">
 
-                <th>Country name <button class="js-countrySort">Sortsomething</button></th>
-                <th>Capital city</th>
-                <th>Currency</th>
-                <th>Primary language</th>
+                <th>Country name <button class="js-countrySort">Sort country</button></th>
+                <th>Capital city <button class="js-capitalSort">Sort capital</button></th>
+                <th>Currency <button class="js-currencySort">Sort curency</button></th>
+                <th>Primary language <button class="js-languageSort">Sort language</button></th>
 
                 </tr>
             </thead>

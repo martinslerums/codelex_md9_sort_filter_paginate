@@ -1,36 +1,21 @@
-
-
-
-.carousel {
-    width: 100%;
-    margin: 0 auto;
-    max-width: 700px;
-    padding-top: 3rem;
-
+*{
+    box-sizing: border-box;
 }
 
-.carousel__image {
-    display: none;
-    width: 100%;
-    aspect-ratio: 16 / 9;
-
-    &.active{
-        display: block;
-    }
+.search__wrapper{
+    display: flex;
+    gap: 15px;
+    justify-content: space-evenly;
+    padding: 50px 10px;
+}
+.searcbox{
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
 }
 
-
-.carousel__button-wrapper{
+.loadMore__button-wrapper{
     display: flex;
     justify-content: center;
-    gap: 1rem;
-}
-
-.carousel__button-wrapper{
-    padding: 15px 25px;
-    border: none;
-    background: greenyellow;
-    text-transform: capitalize;
-    border-radius: 10px;
-    transition: opacity 0.2;
+    padding-bottom: 50px;
 }
