@@ -42,7 +42,6 @@ class CountryTable {
   searchBtn: HTMLButtonElement;
 
   constructor(wrapper: string) {
-
     this.tableWrapper = document.querySelector(wrapper);
     this.table = this.tableWrapper.querySelector(".js-table");
     this.tableBody = this.table.querySelector(".js-table__body");
@@ -56,11 +55,10 @@ class CountryTable {
 
     this.countrySearch = document.querySelector(".js-countrySearch");
     this.capitalSearch = document.querySelector(".js-capitalSearch");
-    this.currencySearch = document.querySelector('.js-currencySearch');
-    this.languageSearch = document.querySelector('.js-languageSearch');
+    this.currencySearch = document.querySelector(".js-currencySearch");
+    this.languageSearch = document.querySelector(".js-languageSearch");
 
-
-    this.searchBtn = document.querySelector(".js-search__Button")
+    this.searchBtn = document.querySelector(".js-search__Button");
 
     //Initialize the table when the CountryTable instance is created
     this.clearTable();
@@ -84,11 +82,10 @@ class CountryTable {
     this.sortCountryCurrency();
     this.sortCountryLanguage();
 
-    this.search()
+    this.search();
 
     this.addEventToCurrencySearch();
     this.addEventToLanguageSearch();
-
   }
 
   updateApiUrl() {
@@ -99,12 +96,12 @@ class CountryTable {
     this.tableBody.innerHTML = "";
   }
 
-  getCountries(limit: number, searchParams?: { key: string, value: string }[]) {
+  getCountries(limit: number, searchParams?: { key: string; value: string }[]) {
     this.updateApiUrl();
 
     // Append search parameters to the API URL
     if (searchParams) {
-      searchParams.forEach(param => {
+      searchParams.forEach((param) => {
         this.apiUrl += `&${param.key}=${param.value}`;
       });
     }
@@ -183,39 +180,35 @@ class CountryTable {
   }
 
   performSearch(searchUrl: string) {
-
     axios.get(searchUrl).then((countriesData) => {
       this.clearTable();
       this.renderTable(countriesData.data);
     });
-
   }
 
   search() {
+    this.searchBtn.addEventListener("click", () => {
+      console.log("Search clicked");
 
-    this.searchBtn.addEventListener('click', () => {
-      console.log('Search clicked');
+      let searchParams: string = "";
 
-      let searchParams:string = '';
-
-      if (this.countrySearch.value.trim() !== '') {
+      if (this.countrySearch.value.trim() !== "") {
         searchParams = `name=${this.countrySearch.value.trim()}`;
       }
 
-      if (this.capitalSearch.value.trim() !== '') {
+      if (this.capitalSearch.value.trim() !== "") {
         searchParams = `capital=${this.capitalSearch.value.trim()}`;
       }
 
       const searchUrl = `${this.apiUrl}&${searchParams}`;
       this.performSearch(searchUrl);
     });
-
   }
 
   searchCurrency() {
     const searchTerm = this.currencySearch.value.toLowerCase();
-    const searchParams = [{ key: 'currency.name_like', value: searchTerm }];
-  
+    const searchParams = [{ key: "currency.name_like", value: searchTerm }];
+
     this.getCountries(this.loadedCountries, searchParams).then((countries) => {
       this.clearTable();
       this.renderTable(countries);
@@ -223,25 +216,24 @@ class CountryTable {
   }
   searchLanguage() {
     const searchTerm = this.languageSearch.value.toLowerCase();
-    const searchParams = [{ key: 'language.name_like', value: searchTerm }];
-  
+    const searchParams = [{ key: "language.name_like", value: searchTerm }];
+
     this.getCountries(this.loadedCountries, searchParams).then((countries) => {
       this.clearTable();
       this.renderTable(countries);
     });
   }
-  
+
   addEventToCurrencySearch() {
-    this.currencySearch.addEventListener('input', () => {
+    this.currencySearch.addEventListener("input", () => {
       this.searchCurrency();
     });
   }
   addEventToLanguageSearch() {
-    this.languageSearch.addEventListener('input', () => {
+    this.languageSearch.addEventListener("input", () => {
       this.searchLanguage();
     });
   }
-
 }
 
 const table = new CountryTable(".js-table__container");
